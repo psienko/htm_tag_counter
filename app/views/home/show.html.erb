@@ -1,0 +1,36 @@
+<div class="container">
+<%= form_for @remote_page, url: root_path, method: :get do |f| %>
+     <div class="form-group">
+        <%= f.text_field :url, class: "form-control", "placeholder": "URL to web page" %>  
+    </div>
+  
+    <div class="row">
+        <div class="col-md-12">
+            <%= f.submit "Pobierz informacje o znacznikach HTML", class: "btn btn-primary btn-lg", style: "width: 100%" %>
+        </div>
+    </div>
+<% end %>
+</div>
+
+
+<div id='chart'></div>
+<%= render_chart @chart, 'chart' if @remote_page.html_tags.present? %>
+
+<div class="container" style="margin-top: 50px">
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>HTML Tag</th>
+        <th>Ilość wystąpień</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @remote_page.html_tags.each do |tag| %>
+      <tr>
+        <td><%=tag[0] %></td>
+        <td><%=tag[1] %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
