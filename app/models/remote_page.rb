@@ -22,7 +22,7 @@ class RemotePage
 
     def html_tags
         return [] if self.html_document.blank?
-       tags = TAG_DICTIONARY.map do|tag| 
+        tags = TAG_DICTIONARY.map do|tag| 
             {
                 name: "#{tag}",
                 count: html_document.css(tag).count
@@ -32,5 +32,10 @@ class RemotePage
         end - [nil]
     end
 
-
+    def letters
+        return [] if html_document.blank?
+        html_document.xpath("//text()").to_s.downcase.scan(/\w/).inject(Hash.new(0)) do |h, c| 
+            h[c] += 1; h
+        end.sort_by {|_key, value| value*-1}
+    end
 end
