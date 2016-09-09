@@ -27,6 +27,7 @@ gem 'nokogiri'
 gem 'simple_form'
 gem 'pry'
 gem "google_visualr", "~> 2.5.1"
+gem 'heroku' # it's needed only for tests and should be removed
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -51,4 +52,3 @@ end
 group :production do
     gem 'rails_12factor'
 end
-
